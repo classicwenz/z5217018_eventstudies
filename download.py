@@ -33,7 +33,7 @@ def yf_rec_to_csv(tic, pth,
     """
     c = yf.Ticker(tic)
     c.history(start=start, end=end).tz_localize(None)
-    # Make sure we only relevant dates
+    # To make sure we only use relevant dates only
     if start is not None and end is not None:
         df = c.recommendations.loc[start:end]
     elif start is not None:
