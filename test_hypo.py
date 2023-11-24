@@ -16,16 +16,16 @@ def calc_tstats(event_cars):
         Dataframe with event types and CARs for each event in the sample.
 
     """
-    # Separate between upgrades and downgrades
+    # Separate the df between upgrades and downgrades
     groups = event_cars.groupby('event_type')['car']
     print(groups.describe())
-    # Mean
+    # Calculate the mean
     car_bar = groups.mean()
-    # Standard error for mean (sem)
+    # Find the standard error for mean (sem)
     car_sem = groups.sem()
     car_t = car_bar/car_sem
-    # collect the number of obs in each group
+    # Find the number of obs in each group
     car_n = groups.count()
-    # Construct the result data frame
+    # Construct the result
     res = pd.DataFrame({'car_bar':car_bar, 'car_t': car_t, 'n_obs': car_n})
     return res
